@@ -14,9 +14,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
-app.get('/', (req: Request, res: Response) => {
-  // res.json({msg: 'This is CORS-enabled for a Single Route'})
-  res.send({msg: 'Hello from the TypeScript world!'});
+const cutString = (str: string): string => {
+  let count = 1
+  let returnString = ''
+  for (const char of str) {
+    if (count === 3) {
+      returnString = returnString + char
+      count = 0
+    }
+    count += 1
+  }
+  return returnString
+}
+
+app.post('/test', (req: Request, res: Response) => {
+  const returnString: string = cutString(req.body.string_to_cut)
+  res.send({return_string: returnString});
 });
 
 app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));

@@ -15,8 +15,8 @@ app.use(helmet_1.default());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(cors_1.default());
-app.get('/', function (req, res) {
+app.get('/test', function (req, res) {
     // res.json({msg: 'This is CORS-enabled for a Single Route'})
-    res.send('Hello from the TypeScript world!');
+    res.send({ return_string: 'Hello from the TypeScript world!' });
 });
 app.listen(PORT, function () { return console.log("Running on " + PORT + " \u26A1"); });
